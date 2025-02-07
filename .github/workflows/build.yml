@@ -2,8 +2,9 @@ name: Build VS Code Extension
 
 on:
   push:
-    tag:
+    tags:
       - v*
+    types: [created]
 
 jobs:
   build:
