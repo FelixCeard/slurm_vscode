@@ -15,61 +15,61 @@
   "contributes": {
     "commands": [
       {
-        "command": "slurm-vscode.openJobManager",
+        "command": "slurm_job_manager.openJobManager",
         "title": "Open Slurm Job Manager"
       },
       {
-        "command": "slurm-vscode.attachToJob",
+        "command": "slurm_job_manager.attachToJob",
         "title": "Attach to Job",
         "icon": "$(output)"
       },
       {
-        "command": "slurm-vscode.sshToNode",
+        "command": "slurm_job_manager.sshToNode",
         "title": "SSH to Node",
         "icon": "$(terminal)"
       },
       {
-        "command": "slurm-vscode.peekJob",
+        "command": "slurm_job_manager.peekJob",
         "title": "View Details",
         "icon": "$(file)"
       },
       {
-        "command": "slurm-vscode.killJob",
+        "command": "slurm_job_manager.killJob",
         "title": "Kill Job",
         "icon": "$(trash)"
       },
       {
-        "command": "slurm-vscode.confirmKill",
+        "command": "slurm_job_manager.confirmKill",
         "title": "Confirm Kill",
         "icon": "$(check)"
       },
       {
-        "command": "slurm-vscode.cancelKill",
+        "command": "slurm_job_manager.cancelKill",
         "title": "Cancel Kill",
         "icon": "$(close)"
       },
       {
-        "command": "slurm-vscode.refresh",
+        "command": "slurm_job_manager.refresh",
         "title": "Refresh",
         "icon": "$(refresh)"
       },
       {
-        "command": "slurm-vscode.showFilter",
+        "command": "slurm_job_manager.showFilter",
         "title": "Filter Jobs",
         "icon": "$(search)"
       },
       {
-        "command": "slurm-vscode.selectAll",
+        "command": "slurm_job_manager.selectAll",
         "title": "Select All Jobs",
         "icon": "$(check-all)"
       },
       {
-        "command": "slurm-vscode.clearSelection",
+        "command": "slurm_job_manager.clearSelection",
         "title": "Clear Selection",
         "icon": "$(clear-all)"
       },
       {
-        "command": "slurm-vscode.openSettings",
+        "command": "slurm_job_manager.openSettings",
         "title": "Open Slurm Settings",
         "icon": "$(gear)"
       }
@@ -96,45 +96,45 @@
     "viewsWelcome": [
       {
         "view": "slurmJobs",
-        "contents": "Enter regex pattern to filter jobs by name:\n[$(search) Enter regex pattern](command:slurm-vscode.showFilter)\n---"
+        "contents": "Enter regex pattern to filter jobs by name:\n[$(search) Enter regex pattern](command:slurm_job_manager.showFilter)\n---"
       }
     ],
     "menus": {
       "view/item/context": [
         {
-          "command": "slurm-vscode.attachToJob",
+          "command": "slurm_job_manager.attachToJob",
           "when": "view == slurmJobs && viewItem =~ /slurmJob/",
           "group": "inline@1"
         },
         {
-          "command": "slurm-vscode.sshToNode",
+          "command": "slurm_job_manager.sshToNode",
           "when": "view == slurmJobs && viewItem =~ /slurmJob/",
           "group": "inline@2"
         },
         {
-          "command": "slurm-vscode.peekJob",
+          "command": "slurm_job_manager.peekJob",
           "when": "view == slurmJobs && viewItem =~ /slurmJob/",
           "group": "inline@3"
         },
         {
-          "command": "slurm-vscode.killJob",
+          "command": "slurm_job_manager.killJob",
           "when": "view == slurmJobs && viewItem == slurmJob",
           "group": "inline@4"
         },
         {
-          "command": "slurm-vscode.confirmKill",
+          "command": "slurm_job_manager.confirmKill",
           "when": "view == slurmJobs && viewItem =~ /confirmKill/",
           "group": "inline@4"
         },
         {
-          "command": "slurm-vscode.cancelKill",
+          "command": "slurm_job_manager.cancelKill",
           "when": "view == slurmJobs && viewItem =~ /confirmKill/",
           "group": "inline@5"
         }
       ],
       "view/title": [
         {
-          "command": "slurm-vscode.openSettings",
+          "command": "slurm_job_manager.openSettings",
           "when": "view == slurmJobs",
           "group": "navigation@2"
         }
@@ -143,29 +143,29 @@
     "configuration": {
       "title": "Slurm VSCode",
       "properties": {
-        "slurmVSCode.jobHistorySize": {
+        "slurmJobManager.jobHistorySize": {
           "type": "number",
           "default": 25,
           "minimum": 0,
           "description": "Number of past jobs to show in the history section"
         },
-        "slurmVSCode.autoRefresh": {
+        "slurmJobManager.autoRefresh": {
           "type": "boolean",
           "default": true,
           "description": "Enable automatic refresh of job list"
         },
-        "slurmVSCode.refreshInterval": {
+        "slurmJobManager.refreshInterval": {
           "type": "number",
           "default": 5,
           "minimum": 1,
           "description": "Interval in seconds between automatic refreshes"
         },
-        "slurmVSCode.showRunningTime": {
+        "slurmJobManager.showRunningTime": {
           "type": "boolean",
           "default": true,
           "description": "Show running time for each job"
         },
-        "slurmVSCode.showNodeInfo": {
+        "slurmJobManager.showNodeInfo": {
           "type": "boolean",
           "default": true,
           "description": "Show node information for each job"

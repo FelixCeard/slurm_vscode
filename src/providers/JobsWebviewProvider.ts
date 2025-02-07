@@ -141,7 +141,7 @@ export class JobsWebviewProvider implements vscode.WebviewViewProvider {
                     this.updateView();
                     break;
                 case 'openSettings':
-                    await vscode.commands.executeCommand('workbench.action.openSettings', '@ext:slurm-vscode');
+                    await vscode.commands.executeCommand('workbench.action.openSettings', '@ext:slurm_job_manager');
                     break;
             }
         });
