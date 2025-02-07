@@ -15,8 +15,8 @@ export function activate(context: vscode.ExtensionContext) {
     const view = vscode.window.registerWebviewViewProvider('slurmJobs', jobsWebviewProvider);
     
     // Register settings command
-    let openSettingsCommand = vscode.commands.registerCommand('slurm_job_manager.openSettings', () => {
-        vscode.commands.executeCommand('workbench.action.openSettings', '@ext:slurm_job_manager');
+    let openSettingsCommand = vscode.commands.registerCommand('slurm-job-manager.openSettings', () => {
+        vscode.commands.executeCommand('workbench.action.openSettings', '@ext:slurm-job-manager');
     });
 
     context.subscriptions.push(
@@ -25,33 +25,33 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     // Register select all command
-    let selectAllCommand = vscode.commands.registerCommand('slurm_job_manager.selectAll', () => {
+    let selectAllCommand = vscode.commands.registerCommand('slurm-job-manager.selectAll', () => {
         jobsWebviewProvider.selectAll();
     });
 
     // Register clear selection command
-    let clearSelectionCommand = vscode.commands.registerCommand('slurm_job_manager.clearSelection', () => {
+    let clearSelectionCommand = vscode.commands.registerCommand('slurm-job-manager.clearSelection', () => {
         jobsWebviewProvider.clearSelection();
     });
 
     // Register refresh command
-    let refreshCommand = vscode.commands.registerCommand('slurm_job_manager.refresh', () => {
+    let refreshCommand = vscode.commands.registerCommand('slurm-job-manager.refresh', () => {
         slurmJobProvider.refresh();
     });
 
     // Register a command to open the job manager
-    let openManagerCommand = vscode.commands.registerCommand('slurm_job_manager.openJobManager', () => {
+    let openManagerCommand = vscode.commands.registerCommand('slurm-job-manager.openJobManager', () => {
         vscode.window.showInformationMessage('Slurm Job Manager is now active!');
     });
 
     // Register command to kill a job
-    let killJobCommand = vscode.commands.registerCommand('slurm_job_manager.killJob', async (job: JobItem) => {
+    let killJobCommand = vscode.commands.registerCommand('slurm-job-manager.killJob', async (job: JobItem) => {
         // Set the job to confirm state
         slurmJobProvider.setJobToConfirm(job.jobId);
     });
 
     // Register command to confirm kill
-    let confirmKillCommand = vscode.commands.registerCommand('slurm_job_manager.confirmKill', async (job: JobItem) => {
+    let confirmKillCommand = vscode.commands.registerCommand('slurm-job-manager.confirmKill', async (job: JobItem) => {
         try {
             // Execute scancel command
             await execAsync(`scancel ${job.jobId}`);
@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     // Register command to cancel kill
-    let cancelKillCommand = vscode.commands.registerCommand('slurm_job_manager.cancelKill', async (job: JobItem) => {
+    let cancelKillCommand = vscode.commands.registerCommand('slurm-job-manager.cancelKill', async (job: JobItem) => {
         slurmJobProvider.clearJobToConfirm(job.jobId);
     });
 
