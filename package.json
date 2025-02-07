@@ -1,5 +1,5 @@
 {
-  "name": "slurm_job_manager",
+  "name": "slurm-job-manager",
   "displayName": "Slurm Job Manager",
   "publisher": "Felix_Ceard-Falkenerg",
   "description": "Monitor and manage Slurm jobs within VS Code",
