@@ -1,7 +1,7 @@
 {
-  "name": "slurm-vscode",
+  "name": "slurm_job_manager",
   "displayName": "Slurm Job Manager",
-  "publisher": "Felix Ceard-Falkenberg",
+  "publisher": "Felix_Ceard-Falkenerg",
   "description": "Monitor and manage Slurm jobs within VS Code",
   "version": "0.0.1",
   "engines": {
