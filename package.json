@@ -1,0 +1,200 @@
+{
+  "name": "slurm-vscode",
+  "displayName": "Slurm Job Manager",
+  "description": "Monitor and manage Slurm jobs within VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "slurm-vscode.openJobManager",
+        "title": "Open Slurm Job Manager"
+      },
+      {
+        "command": "slurm-vscode.attachToJob",
+        "title": "Attach to Job",
+        "icon": "$(output)"
+      },
+      {
+        "command": "slurm-vscode.sshToNode",
+        "title": "SSH to Node",
+        "icon": "$(terminal)"
+      },
+      {
+        "command": "slurm-vscode.peekJob",
+        "title": "View Details",
+        "icon": "$(file)"
+      },
+      {
+        "command": "slurm-vscode.killJob",
+        "title": "Kill Job",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "slurm-vscode.confirmKill",
+        "title": "Confirm Kill",
+        "icon": "$(check)"
+      },
+      {
+        "command": "slurm-vscode.cancelKill",
+        "title": "Cancel Kill",
+        "icon": "$(close)"
+      },
+      {
+        "command": "slurm-vscode.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "slurm-vscode.showFilter",
+        "title": "Filter Jobs",
+        "icon": "$(search)"
+      },
+      {
+        "command": "slurm-vscode.selectAll",
+        "title": "Select All Jobs",
+        "icon": "$(check-all)"
+      },
+      {
+        "command": "slurm-vscode.clearSelection",
+        "title": "Clear Selection",
+        "icon": "$(clear-all)"
+      },
+      {
+        "command": "slurm-vscode.openSettings",
+        "title": "Open Slurm Settings",
+        "icon": "$(gear)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "slurm-explorer",
+          "title": "Slurm Jobs",
+          "icon": "resources/slurm.png"
+        }
+      ]
+    },
+    "views": {
+      "slurm-explorer": [
+        {
+          "id": "slurmJobs",
+          "name": "Slurm Jobs",
+          "type": "webview",
+          "visibility": "hidden"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "slurmJobs",
+        "contents": "Enter regex pattern to filter jobs by name:\n[$(search) Enter regex pattern](command:slurm-vscode.showFilter)\n---"
+      }
+    ],
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "slurm-vscode.attachToJob",
+          "when": "view == slurmJobs && viewItem =~ /slurmJob/",
+          "group": "inline@1"
+        },
+        {
+          "command": "slurm-vscode.sshToNode",
+          "when": "view == slurmJobs && viewItem =~ /slurmJob/",
+          "group": "inline@2"
+        },
+        {
+          "command": "slurm-vscode.peekJob",
+          "when": "view == slurmJobs && viewItem =~ /slurmJob/",
+          "group": "inline@3"
+        },
+        {
+          "command": "slurm-vscode.killJob",
+          "when": "view == slurmJobs && viewItem == slurmJob",
+          "group": "inline@4"
+        },
+        {
+          "command": "slurm-vscode.confirmKill",
+          "when": "view == slurmJobs && viewItem =~ /confirmKill/",
+          "group": "inline@4"
+        },
+        {
+          "command": "slurm-vscode.cancelKill",
+          "when": "view == slurmJobs && viewItem =~ /confirmKill/",
+          "group": "inline@5"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "slurm-vscode.openSettings",
+          "when": "view == slurmJobs",
+          "group": "navigation@2"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "Slurm VSCode",
+      "properties": {
+        "slurmVSCode.jobHistorySize": {
+          "type": "number",
+          "default": 25,
+          "minimum": 0,
+          "description": "Number of past jobs to show in the history section"
+        },
+        "slurmVSCode.autoRefresh": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable automatic refresh of job list"
+        },
+        "slurmVSCode.refreshInterval": {
+          "type": "number",
+          "default": 5,
+          "minimum": 1,
+          "description": "Interval in seconds between automatic refreshes"
+        },
+        "slurmVSCode.showRunningTime": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show running time for each job"
+        },
+        "slurmVSCode.showNodeInfo": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show node information for each job"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.2.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "20.x",
+    "@types/vscode": "^1.85.0",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@vscode/test-electron": "^2.3.8",
+    "eslint": "^8.56.0",
+    "glob": "^7.2.0",
+    "minimatch": "^3.1.2",
+    "mocha": "^10.2.0",
+    "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "@vscode/codicons": "^0.0.36"
+  }
+}
