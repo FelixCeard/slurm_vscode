@@ -32,7 +32,7 @@ jobs:
       run: npm install -g @vscode/vsce && vsce package
     
     - name: Upload artifact
-      uses: actions/upload-artifact@v3
+      uses: uses: actions/upload-artifact@v4
       with:
         name: vsix-package
         path: "*.vsix" 
